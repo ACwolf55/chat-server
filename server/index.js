@@ -1,5 +1,6 @@
 
 const express = require('express')
+const mc = require('./controllers/messages-controller')
 
 const app = express()
 
@@ -13,13 +14,11 @@ app.listen(port, () =>{
     }
 )
 
-const mc =require('./controllers/messages-controller')
-
 const messageBaseUrl = '/api/messages'
 app.post(messageBaseUrl,mc.create)
 app.get(messageBaseUrl,mc.read)
-app.put(messageBaseUrl,mc.update)
-app.delete(messageBaseUrl,mc.delete)
+app.put(`${messageBaseUrl}/:id`,mc.update)
+app.delete(`${messageBaseUrl}/:id`,mc.delete)
 
 
 

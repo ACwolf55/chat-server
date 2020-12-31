@@ -3,6 +3,7 @@ const messages =[]
 
 let id = 0
 
+
 module.exports ={
     create:(req,res) => {
         const {text,time} = req.body
@@ -11,7 +12,7 @@ module.exports ={
         res.status(200).send(messages)
     },
 
-    read: (req,res) => {
+    read:(req,res) => {
         res.status(200).send(messages)
     },
 
@@ -34,6 +35,7 @@ module.exports ={
         
     delete: (req,res)=> {
         const deleteID = req.params.id
+        messageIndex = messages.findIndex(message=>message.id == deleteID)
         messages.splice(messageIndex,1)
         res.status(200).send(messages)
     }
